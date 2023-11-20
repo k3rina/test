@@ -1,0 +1,237 @@
+@media only screen and (min-width: 360px) {
+  .app {
+    width: 360px;
+    background-color: #f6f6f6;
+    height: 100%;
+  }
+
+  .header {
+    color: #1f2261;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 29.3px;
+    text-align: center;
+    padding-top: 7vh;
+  }
+  .card {
+    width: 89%;
+    background-color: #ffffff;
+    height: 268px;
+    margin: 0 auto;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.05);
+    border-radius: 5%;
+    margin-top: 40px !important;
+  }
+  .card_error {
+    height: 300px;
+  }
+  .subheader {
+    margin-top: 12px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18.75px;
+    text-align: center;
+    color: #808080;
+  }
+  .amount {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
+    margin: 20px 0px 16px 0px;
+    color: #989898;
+  }
+  .convert {
+    margin-top: 14px;
+  }
+  .first_block {
+    display: flex;
+    flex-direction: column;
+    width: 87.5%;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  .line-border {
+    margin: 57px 0px 35px;
+    overflow: hidden;
+  }
+
+  .line {
+    border: 1px solid #e7e7ee;
+    width: 87%;
+    margin: 0 auto;
+    margin-top: 34px;
+  }
+
+  .input:focus {
+    outline: none;
+  }
+
+  .circle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -22px;
+  }
+
+  .circle {
+    width: 44px;
+    height: 44px;
+    background-color: #26278d;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in-out;
+    z-index: 1;
+  }
+
+  .circle.rotate {
+    transform: rotate(180deg);
+  }
+
+  .main {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+
+  .main.error .input {
+    border: 1px solid red;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 5px;
+    text-align: right;
+  }
+
+  .input-main select,
+  .input-main input {
+    flex: 0 0 auto;
+    border: none;
+    height: 2.2em;
+    width: 50%;
+    border-radius: 0.3em;
+    color: #3c3c3c;
+    background-color: #efefef;
+    font-size: 20px;
+    padding: 0.6em;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23.44px;
+    text-align: right;
+    color: #3c3c3c;
+  }
+  .input-main select {
+    width: 43%;
+    background-color: #ffffff;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: #26278d;
+  }
+  input {
+    width: 10%;
+    box-sizing: border-box;
+  }
+  .error-boundary {
+    border: 1px solid red !important;
+  }
+
+  .exchange {
+    font-size: 16px;
+    line-height: 18.75px;
+    color: #a1a1a1;
+    width: 89%;
+    margin: 0 auto;
+    margin-top: 8%;
+  }
+
+  .rate {
+    width: 89%;
+    margin: 0 auto;
+    margin-top: 4%;
+    font-size: 18px;
+    line-height: 21.09px;
+    color: #000000;
+    font-weight: 500;
+  }
+  .dropdown {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+  }
+  .dropdown-btn {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23.44px;
+    color: #26278d;
+    position: relative;
+  }
+
+  .dropdown-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  }
+  .flag {
+    border-radius: 50%;
+    background-position: center;
+  }
+  .dropdown-content {
+    position: absolute;
+    background-color: #efefef;
+    margin: 0 auto;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.05);
+
+    display: block;
+    max-height: 192px;
+    overflow-y: auto;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 115px;
+    z-index: 2;
+  }
+
+  .dropdown_item {
+    display: flex;
+    width: 100%;
+    padding: 5px 0px;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .dropdown_item:hover {
+    cursor: pointer;
+    background-color: #dcdcdc;
+  }
+  .down {
+    padding-left: 10px;
+  }
+  .popup {
+    width: 42%;
+  }
+  .loader {
+    position: absolute;
+    top: 20%;
+    left: 70%;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
