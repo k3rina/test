@@ -34,7 +34,6 @@ export const convertCurrencyFetch = async (
       throw new Error('API request failed');
     }
 
-    console.log('API Response:', data);
     return data;
   } catch (error) {
     console.error('Error during API request:', error);
@@ -52,7 +51,6 @@ export const exchangeRateFetch = async (): Promise<Currency> => {
 
   const jsonData = await res.json();
 
-  // Ensure the response structure matches your Currency type
   const currencyResponse: Currency = {
     query: { from: '', to: '', amount: '' },
     result: 0,
@@ -61,6 +59,8 @@ export const exchangeRateFetch = async (): Promise<Currency> => {
       base: jsonData.base,
     },
     error: undefined,
+    fromCurrency: '',
+    toCurrency: '',
   };
 
   return currencyResponse;

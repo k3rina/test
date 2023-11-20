@@ -14,5 +14,5 @@ export type Currency = {
 };
 
 export type CurrencyState = {
-  currency: Currency; // Update this line to use the 'Currency' type
+  currency: Currency;
 };

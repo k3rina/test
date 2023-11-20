@@ -21,7 +21,6 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
     console.error(error, errorInfo);
-    // You can log the error to a service like Sentry
   }
 
   render(): ReactNode {

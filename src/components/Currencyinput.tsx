@@ -1,19 +1,18 @@
-interface CurrencymainProps {
+interface CurrencyinputProps {
   currencyOptions: string[];
   selectedCurrency: string;
   onChangeCurrency: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   onChangeAmount: (e: React.ChangeEvent<HTMLInputElement>) => void;
   exchangeRate?: number;
-  isLoading?: boolean;
   setIsAmountValidRef: (isValid: boolean) => void;
   amount?: string;
-  setToCurrency: (currency: string) => void;
-  toCurrency: string;
+  setFromCurrency: (currency: string) => void;
+  fromCurrency: string;
 }
 
 import CurrencyFlag from 'react-currency-flags';
 import { useEffect, useRef, useState } from 'react';
-import { useAppSelector } from '../redux/store';
+
 import '../styles/App.css';
 import down from '../assets/down.svg';
 
@@ -27,7 +26,6 @@ const CurrencyFlagComponent1: React.FC<CurrencyFlagComponentProps> = ({
   currency,
 }) => {
   if (!currency) {
- 
     return <div>No currency provided</div>;
   }
 
@@ -36,29 +34,25 @@ const CurrencyFlagComponent1: React.FC<CurrencyFlagComponentProps> = ({
   );
 };
 
-const Currencymain = ({
+const Currencyinput = ({
   currencyOptions,
   selectedCurrency,
-  isLoading,
   onChangeAmount,
   amount,
-  toCurrency,
-  setToCurrency,
-}: CurrencymainProps): JSX.Element => {
-  const { result } = useAppSelector((store) => store.currency.currency);
+  fromCurrency,
+  setFromCurrency,
+}: CurrencyinputProps): JSX.Element => {
   const [isAmountNotValid, setNotAmountValid] = useState(true);
   const [isActive, setIsActive] = useState(false);
+
   const setIsAmountValidRef = useRef<(isValid: boolean) => void>(() => {});
   const selectedOptionRef = useRef<string | null>(null);
   const dropdownContentRef = useRef<HTMLDivElement>(null);
 
   const handleCurrencySelection = (selectedOption: string | undefined) => {
     if (selectedOption) {
-      console.log('Selected currency:', selectedOption);
+      setFromCurrency(selectedOption);
 
-      setToCurrency(selectedOption);
-
-      
       setIsActive(false);
       selectedOptionRef.current = selectedOption;
     }
@@ -70,12 +64,10 @@ const Currencymain = ({
         dropdownContentRef.current &&
         !dropdownContentRef.current.contains(event.target as Node)
       ) {
-       
         setIsActive(false);
       }
     };
 
-  
     document.addEventListener('click', handleClickOutside);
 
     return () => {
@@ -84,16 +76,12 @@ const Currencymain = ({
   }, [isActive]);
 
   useEffect(() => {
-
     const isValid = validateAmount(amount || '');
     setNotAmountValid(isValid);
     setIsAmountValidRef.current(isValid);
   }, [amount, setNotAmountValid, setIsAmountValidRef]);
 
   const shouldDisplayError = amount !== undefined;
-
-  const displayValue =
-    isLoading || !isAmountNotValid ? '' : result?.toFixed(2) || '';
 
   return (
     <div className={`input-main ${shouldDisplayError ? 'error' : ''}`}>
@@ -109,15 +97,17 @@ const Currencymain = ({
               setIsActive(!isActive);
             }}
           >
-            <CurrencyFlagComponent1 currency={toCurrency || selectedCurrency} />
+            <CurrencyFlagComponent1
+              currency={fromCurrency || selectedCurrency}
+            />
             <div className={`dropdown-btn ${isActive ? 'active' : ''}`}>
-              {toCurrency || selectedCurrency}
+              {fromCurrency || selectedCurrency}
               <img src={down} className="down" alt="down" />
             </div>
           </div>{' '}
           {isActive && (
             <div className="dropdown-content" ref={dropdownContentRef}>
-              {currencyOptions.map((option) => (
+              {currencyOptions?.map((option) => (
                 <div
                   className="dropdown_item"
                   key={option}
@@ -131,25 +121,17 @@ const Currencymain = ({
           )}
         </div>
 
-        <>
-          {isLoading && (
-            <div>
-              <div className="loader"></div>
-            </div>
-          )}
-          <input
-            type="text"
-            className={`input ${isLoading ? 'loading' : ''} ${
-              shouldDisplayError ? 'error-border' : ''
-            }`}
-            value={displayValue}
-            disabled
-            onChange={onChangeAmount}
-          />
-        </>
+        <input
+          type="text"
+          className={`input  ${
+            isAmountNotValid || amount === '' ? 'error-boundary' : ''
+          }`}
+          value={amount}
+          onChange={onChangeAmount}
+        />
       </div>
     </div>
   );
 };
 
-export default Currencymain;
+export default Currencyinput;
